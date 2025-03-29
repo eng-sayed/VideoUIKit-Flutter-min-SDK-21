@@ -109,19 +109,23 @@ class _OneToOneLayoutState extends State<OneToOneLayout> {
                           ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0, right: 4),
-                  child: Align(
-                    alignment: Alignment.topRight,
-                    child: Container(
-                      height: MediaQuery.of(context).size.height * 0.2,
-                      width: MediaQuery.of(context).size.width / 3,
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: _getLocalViews()),
+                if (!widget
+                        .client.sessionController.value.isLocalVideoDisabled &&
+                    !widget.client.sessionController.value.isScreenShared)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8.0, right: 4),
+                    child: Align(
+                      alignment: Alignment.topRight,
+                      child: Container(
+                        height: MediaQuery.of(context).size.height * 0.2,
+                        width: MediaQuery.of(context).size.width / 3,
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: _getLocalViews()),
+                      ),
                     ),
                   ),
-                ),
+                /*  : widget.disabledVideoWidget, */
               ],
             ),
           )
