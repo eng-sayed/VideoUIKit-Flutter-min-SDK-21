@@ -15,7 +15,8 @@ dependencies:
 #      url: https://github.com/AgoraIO-Extensions/Agora-Flutter-SDK.git
 #      ref: main # branch name
   agora_rtc_engine: ^6.3.0
-  agora_rtm: ^1.5.5
+  agora_rtm: 1.5.9
+  # agora_rtm: ^1.5.5
   flutter:
     sdk: flutter
   http: ">=0.13.1 <2.0.0"
