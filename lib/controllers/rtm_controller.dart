@@ -20,7 +20,7 @@ Future<void> rtmMethods(
   );
   await sendUserData(
     toChannel: true,
-    username: sessionController.value.connectionData!.username!,
+    username: sessionController.value.connectionData!.username ?? "asds",
     sessionController: sessionController,
   );
 }
@@ -40,6 +40,17 @@ Future<void> _loginToRtm(SessionController sessionController) async {
         level: Level.info.value,
       );
     } catch (e) {
+      if (e is AgoraRtmClientException) {
+        log(
+          'Error occurred while trying to login. ${e.code} : ${e.reason}  : ${e.hashCode} ',
+          level: Level.error.value,
+        );
+      } else {
+        log(
+          'Error occurred while trying to login. ${e.toString()}',
+          level: Level.error.value,
+        );
+      }
       log(
         'Error occurred while trying to login. ${e.toString()}',
         level: Level.error.value,
