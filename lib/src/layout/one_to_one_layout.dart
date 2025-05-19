@@ -113,14 +113,21 @@ class _OneToOneLayoutState extends State<OneToOneLayout> {
                         .client.sessionController.value.isLocalVideoDisabled &&
                     !widget.client.sessionController.value.isScreenShared)
                   Padding(
-                    padding: const EdgeInsets.only(top: 8.0, right: 4),
+                    padding: const EdgeInsets.only(bottom: 130.0, left: 20),
                     child: Align(
-                      alignment: Alignment.topRight,
+                      alignment: Alignment.bottomLeft,
                       child: Container(
                         height: MediaQuery.of(context).size.height * 0.2,
                         width: MediaQuery.of(context).size.width / 3,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(
+                            color: Color(0xFFB99248),
+                            width: 6,
+                          ),
+                        ),
                         child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(8),
                             child: _getLocalViews()),
                       ),
                     ),

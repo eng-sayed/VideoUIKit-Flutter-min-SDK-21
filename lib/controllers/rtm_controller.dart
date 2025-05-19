@@ -95,7 +95,8 @@ Future<void> _joinRtmChannel(
       sessionController.value =
           sessionController.value.copyWith(isInChannel: true);
     } catch (e) {
-      log('RTM Join channel error : ${e.toString()}', level: Level.error.value);
+      log('RTM Join channel error : ${(e as AgoraRtmChannelException).reason.toString()}',
+          level: Level.error.value);
     }
   }
 }

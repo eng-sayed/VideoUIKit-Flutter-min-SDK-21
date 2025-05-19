@@ -35,7 +35,7 @@ Future<void> rtmClientEventHandler({
     agoraRtmClientEventHandler.onConnectionStateChanged2?.call(state, reason);
 
     log(
-      'Connection state changed : ${state.toString()}, reason : ${reason.toString()}',
+      'Connection state changed : ${state.toString()}, reason : ${reason?..toString()}',
       level: Level.info.value,
       name: tag,
     );
