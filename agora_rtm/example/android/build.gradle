@@ -1,0 +1,33 @@
+apply plugin: 'com.android.library'
+
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+
+def flutterRoot = localProperties.getProperty('flutter.sdk')
+if (flutterRoot == null) {
+    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+}
+
+apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+
+android {
+    compileSdkVersion 33 // Or whatever version you're targeting
+    namespace 'io.agora.rtm' // ✅ REQUIRED for AGP 8.0+
+    
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 33
+    }
+}
+
+flutter {
+    source '../..'
+}
+
+dependencies {
+}
