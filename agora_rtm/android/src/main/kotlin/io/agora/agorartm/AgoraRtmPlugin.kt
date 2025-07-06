@@ -19,10 +19,9 @@ import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
-import io.flutter.plugin.common.PluginRegistry.Registrar
 
 class AgoraRtmPlugin : FlutterPlugin, MethodCallHandler {
-    private var registrar: Registrar? = null
+    // private var registrar: Registrar? = null
     private var binding: FlutterPlugin.FlutterPluginBinding? = null
     private lateinit var applicationContext: Context
     private lateinit var methodChannel: MethodChannel
@@ -31,15 +30,15 @@ class AgoraRtmPlugin : FlutterPlugin, MethodCallHandler {
     private var nextClientIndex: Long = 0
     private var clients = HashMap<Long, RTMClient>()
 
-    companion object {
-        @JvmStatic
-        fun registerWith(registrar: Registrar) {
-            AgoraRtmPlugin().apply {
-                this.registrar = registrar
-                initPlugin(registrar.context(), registrar.messenger())
-            }
-        }
-    }
+    // companion object {
+    //     @JvmStatic
+    //     fun registerWith(registrar: Registrar) {
+    //         AgoraRtmPlugin().apply {
+    //             this.registrar = registrar
+    //             initPlugin(registrar.context(), registrar.messenger())
+    //         }
+    //     }
+    // }
 
     private fun initPlugin(
         context: Context, binaryMessenger: BinaryMessenger
@@ -181,10 +180,10 @@ class AgoraRtmPlugin : FlutterPlugin, MethodCallHandler {
                 val appId = params?.get("appId") as? String
                 val rtmClient = RTMClient(
                     applicationContext,
-                    appId,
-                    nextClientIndex,
-                    registrar?.messenger() ?: binding!!.binaryMessenger,
-                    handler
+    appId,
+    nextClientIndex,
+    binding!!.binaryMessenger,
+    handler
                 )
                 object : Callback<Long>(result, handler) {}.onSuccess(nextClientIndex)
                 clients[nextClientIndex] = rtmClient
@@ -256,7 +255,7 @@ class AgoraRtmPlugin : FlutterPlugin, MethodCallHandler {
                     val agoraRtmChannel = RTMChannel(
                         clientIndex,
                         channelId,
-                        registrar?.messenger() ?: binding!!.binaryMessenger,
+                        binding!!.binaryMessenger,
                         handler
                     )
                     client.createChannel(channelId, agoraRtmChannel)?.let {
