@@ -19,13 +19,19 @@ dependencies:
     path: agora_rtm
 
   # agora_rtm: 1.6.0
-  # agora_rtm: ^1.5.5
+  # agora_rtm: ^2.2.2  
+
   flutter:
     sdk: flutter
   http: ">=0.13.1 <2.0.0"
   lints: any
   permission_handler: 12.0.0+1
   # permission_handler: ^11.0.0
+
+
+dependency_overrides:
+  iris_method_channel: ^2.2.3
+
 
 dev_dependencies:
   flutter_test:
